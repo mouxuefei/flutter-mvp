@@ -15,74 +15,70 @@
 > contract
 
 	abstract class SecondView extends IView<SecondPresenter>{
-      	void showSucc(Article article);
-    }
-    
-    abstract class SecondPresenter  extends IPresenter<SecondView>{
-      Future loadContacts();
-    }
+	  	void showSucc(Article article);
+	}
+	
+	abstract class SecondPresenter  extends IPresenter<SecondView>{
+	  Future loadContacts();
+	}
 
 > presenter
- 
-	class SecondPresenterImp extends BasePresenterKt<SecondView>
-    implements SecondPresenter {
 
+```
+class SecondPresenterImp extends BasePresenterKt<SecondView>
+	implements SecondPresenter {
   	@override
   	Future loadContacts() async {
-   
+
   	}
-	}
+}
+```
 
 > view
 
 	class SecondWidget extends BaseMvpWidget {
-  	 String name;
-  	 String title;
-  	 SecondWidget(this.name,this.title);
-  	 @override
-  	 BaseMvpWidgetState<ITopPresenter, BaseMvpWidget> getMvpState() {
-    	return SecondPage(name,title);
-  	 }
-	 }
-
-    class SecondPage extends BaseMvpWidgetState<SecondPresenter, SecondWidget>
-    implements SecondView {
-      String name;
-      String title;
-      SecondPage(this.name,this.title);
-    
-      @override
-      SecondPresenter mPresenter = SecondPresenterImp();
-    
-      @override
-      void initData() {
-    	mPresenter.loadContacts();
-      }
-    
-      @override
-      void showSucc(Article article) {
-    	toast(article.data[0].name);
-      }
-    
-      @override
-      void initView() {
-     
-    
-      }
-    
-      @override
-      Widget buildWidget(BuildContext context) {
-    var widget = new ListView(
-    padding: new EdgeInsets.symmetric(vertical: 8.0),
-    children: [
-      Text("aaaaaaaaaaaaaaa"),
-      Text("传递过来的参数{$name$title}"),
-    ]
-    );
-    return widget;
-      }
-    
-    }
+	 	 String name;
+	  	 String title;
+	  	 SecondWidget(this.name,this.title);
+	  	 @override
+	  	 BaseMvpWidgetState<ITopPresenter, BaseMvpWidget> getMvpState() {
+	    	return SecondPage(name,title);
+	  	 }
+	}
+	class SecondPage extends BaseMvpWidgetState<SecondPresenter, SecondWidget>
+	implements SecondView {
+	  String name;
+	  String title;
+	  SecondPage(this.name,this.title);
+	
+	  @override
+	  SecondPresenter mPresenter = SecondPresenterImp();
+	
+	  @override
+	  void initData() {
+		mPresenter.loadContacts();
+	  }
+	
+	  @override
+	  void showSucc(Article article) {
+		toast(article.data[0].name);
+	  }
+	
+	  @override
+	  void initView() {
+	  }
+	    @override
+	  Widget buildWidget(BuildContext context) {
+		var widget = new ListView(
+		padding: new EdgeInsets.symmetric(vertical: 8.0),
+		children: [
+	  	Text("aaaaaaaaaaaaaaa"),
+	  	Text("传递过来的参数{$name$title}"),
+		]
+	);
+	return widget;
+	  }
+	}  
 
  * 网络框架的使用
 
@@ -109,15 +105,15 @@ fluro简化了Flutter的路由开发，也是目前Flutter生态中最成熟的�
 首先需要配置路由路径
     
     class Routes {
-  	 static String root = "/";
-  	 static String second = "/second";
+    	 static String root = "/";
+      	 static String second = "/second";
+      	 static void configureRoutes(Router router) {
+    		//router.notFoundHandler=Handler()
+        	router.define(root, handler: homeHandler);
+        	router.define(second, handler: secondHandler);
+      	 }
+    	}
 
-  	static void configureRoutes(Router router) {
-		//router.notFoundHandler=Handler()
-    	router.define(root, handler: homeHandler);
-    	router.define(second, handler: secondHandler);
-  	 }
-	}
 
 
 然后配置handler(带参和不带参)
@@ -125,9 +121,9 @@ fluro简化了Flutter的路由开发，也是目前Flutter生态中最成熟的�
     var homeHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> parameters) {
     return HomeTabWidget();
-	});
-
-	var secondHandler = Handler(
+    });
+    
+    var secondHandler = Handler(
     handlerFunc: (BuildContext context, Map<String, List<String>> parameters) {
       String name = parameters["name"].first;
       String title = parameters["title"].first;
@@ -146,4 +142,4 @@ fluro简化了Flutter的路由开发，也是目前Flutter生态中最成熟的�
 
 1,[https://github.com/385841539/flutter_BaseWidget](https://github.com/385841539/flutter_BaseWidget)
 
-2,[https://github.com/yzxzm/flutter_ydd](https://github.com/yzxzm/flutter_ydd)
+2,[https://github.com/yzxzm/flutter_ydd](https://github.com/yzxzm/flutter_ydd)``
