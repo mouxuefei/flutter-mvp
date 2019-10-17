@@ -129,7 +129,7 @@ fluro简化了Flutter的路由开发，也是目前Flutter生态中最成熟的�
       String title = parameters["title"].first;
       return new SecondWidget(name, title);
     });
-
+ 
 最后路由跳转
 
       String route = '/second?name=${Uri.encodeComponent("张三")}&title=${Uri.encodeComponent("你好")}';

@@ -66,7 +66,7 @@ class _MyThirdInnerPageState extends BaseInnerWidgetState<ThirdInnerPage> {
   }
 
   void requestErrorRequest() {
-
+      setErrorWidgetVisible(true);
   }
 
 }

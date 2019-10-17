@@ -13,11 +13,12 @@ class MyApp extends StatelessWidget {
     final router = Router();
     Routes.configureRoutes(router);
     Application.router = router;
+    SpUtils().init(); //初始化 sp
   }
 
   @override
   Widget build(BuildContext context) {
-    SpUtils().init(); //初始化 sp
+
     return MaterialApp(
       onGenerateRoute: Application.router.generator,
       title: 'Flutter Demo',

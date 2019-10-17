@@ -11,7 +11,6 @@ class SecondPresenterImp extends BasePresenterKt<SecondView>
 
   @override
   Future loadContacts() async {
-    print(mView);
     HttpGo.getInstance()
         .get(UrlConstants.ARTICLE
         , ShowLoadingIntercept(mView)
