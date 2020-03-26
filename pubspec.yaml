@@ -34,6 +34,12 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
 
+#  flutter_boost: ^1.12.13
+  flutter_boost:
+    git:
+      url: 'https://github.com/alibaba/flutter_boost.git'
+      ref: '1.12.13'
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
